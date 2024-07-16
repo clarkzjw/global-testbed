@@ -434,7 +434,10 @@ class LeotestExecutorDocker(LeotestExecutor):
                 user=os.getuid(),
                 detach=False,
                 name=self.container_name,
-                network_mode=network_mode,
+                # PSA: only update this for inactive dishes
+                # and ideally deploy LEOScope client on an isolated network and VM
+                # to avoid potential security issues
+                network_mode="host",
                 privileged=False,
                 network=network,
                 stdin_open=True,
